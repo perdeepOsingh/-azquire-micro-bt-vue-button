@@ -1,0 +1,22 @@
+{
+  "name": "@azquire-micro/bt-vue-button",
+  "version": "1.0.0",
+  "description": "Vuejs plugin for bootstrap framework to show action in progress and avoid double click.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perdeepOsingh/-azquire-micro-bt-vue-button.git"
+  },
+  "keywords": [
+    "Button"
+  ],
+  "author": "Azquire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/perdeepOsingh/-azquire-micro-bt-vue-button/issues"
+  },
+  "homepage": "https://github.com/perdeepOsingh/-azquire-micro-bt-vue-button#readme"
+}
