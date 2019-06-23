@@ -6,6 +6,7 @@ import { linkTo } from '@storybook/addon-links';
 
 import MyButton from './MyButton';
 import Welcome from './Welcome';
+import btVueButton from '../src/bt-vue-button.vue'
 
 storiesOf('Welcome', module).add('to Storybook', () => ({
   components: { Welcome },
@@ -14,6 +15,11 @@ storiesOf('Welcome', module).add('to Storybook', () => ({
 }));
 
 storiesOf('Button', module)
+  .add('btnVueButton', () => ({
+    components: { btVueButton },
+    template: '<btVueButton :name="name" :id="id" :class="class" :value="value"></btVueButton>',
+    data: () => ({ name: 'btnName', id: 'btnId', class: 'btnClasses', value: 'btnValue'})
+  }))
   .add('with text', () => ({
     components: { MyButton },
     template: '<my-button @click="action">Hello Button</my-button>',
