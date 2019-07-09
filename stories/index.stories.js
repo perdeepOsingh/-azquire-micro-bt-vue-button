@@ -1,12 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 import { storiesOf } from '@storybook/vue';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 
 import MyButton from './MyButton';
 import Welcome from './Welcome';
-import btVueButton from '../src/bt-vue-button.vue'
+import btVueButton from '../src/bt-vue-button/bt-vue-button'
 
 storiesOf('Welcome', module).add('to Storybook', () => ({
   components: { Welcome },
@@ -15,25 +18,32 @@ storiesOf('Welcome', module).add('to Storybook', () => ({
 }));
 
 storiesOf('Button', module)
-  .add('btnVueButton', () => ({
+  .addDecorator( withKnobs({ escapeHTML: false }) )
+  .add('btnVueButton - Default', () => ({
     components: { btVueButton },
-    template: '<btVueButton :name="name" :id="id" :class="class" :value="value"></btVueButton>',
-    data: () => ({ name: 'btnName', id: 'btnId', class: 'btnClasses', value: 'btnValue'})
-  }))
-  .add('with text', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">Hello Button</my-button>',
-    methods: { action: action('clicked') },
-  }))
-  .add('with JSX', () => ({
-    components: { MyButton },
-    render(h) {
-      return <my-button onClick={this.action}>With JSX</my-button>;
+    template: `<div class="jumbotron"><btVueButton @clicked="action" :btnName="btnName" :btnId="btnId" :btnClass="btnClass" :btnValue="btnValue" :btnFinalState="btnFinalState" :btnDisabled="btnDisabled"></btVueButton></div>`,
+    props: {
+      btnName: {
+        default: text('btnName')
+      },
+      btnId: {
+          default: text('btnId')
+      },
+      btnClass: {
+          default: text('btnClasses')
+      },
+      btnValue: {
+          default: text('btnValue', 'Click Me'),
+      },
+      btnDisabled: {
+          default: boolean('Disabled', false)
+      },
+      btnFinalState: {
+        default: select('Final State', [null,'success', 'failure'])
+      }
     },
-    methods: { action: linkTo('clicked') },
+    methods: {
+      action: () => { 
+        
+    } }
   }))
-  .add('with some emoji', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">😀 😎 👍 💯</my-button>',
-    methods: { action: action('clicked') },
-  }));
